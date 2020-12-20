@@ -2,6 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment
 from django.utils import timezone
 from .forms import PostForm, CommentForm
+from .serializers import *
+from rest_framework import generics
+
+class PostCreate(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 
 # Create your views here.
 def home(request):
